@@ -92,6 +92,6 @@ jobs:
         with:
           name: kisilik-testi-apk
           path: bin/*.apk
-          if-no-files-found: error
+          if-no-files-found: error 
 
 
