@@ -20,8 +20,14 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y autoconf libtool pkg-config automake gettext zip unzip libssl-dev
+        sudo apt-get install -y autoconf libtool pkg-config automake gettext zip unzip libssl-dev openjdk-17-jdk
         pip install buildozer cython==0.29.33
+
+    - name: Accept Android SDK Licenses
+      run: |
+        mkdir -p ~/.android
+        touch ~/.android/repositories.cfg
+        yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
 
     - name: Build APK with Buildozer
       run: |
@@ -32,4 +38,5 @@ jobs:
       with:
         name: kisilik-testi-apk
         path: bin/*.apk
+
 
